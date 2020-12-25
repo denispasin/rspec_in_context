@@ -19,3 +19,5 @@ jobs:
         run: 'git diff main lib/rspec_in_context/version.rb | grep -E "^\+.*VERSION" | grep -E -o "[0-9]+\.[0-9]+\.[0-9]+(\.[0-9]+)?"'
       - name: Verify if higher version
         run: '[[ $(git diff main lib/rspec_in_context/version.rb | grep -E "^\+.*VERSION" | grep -E -o "[0-9]+\.[0-9]+\.[0-9]+(\.[0-9]+)?") > $(git diff main lib/rspec_in_context/version.rb | grep -E "^-.*VERSION" | grep -E -o "[0-9]+\.[0-9]+\.[0-9]+(\.[0-9]+)?") ]]'
+      - name: Verify if version is updated in Gemfile.lock
+        run: '[[ $(cat Gemfile.lock | grep "$(git diff main lib/rspec_in_context/version.rb | grep -E "^\+.*VERSION" | grep -E -o "[0-9]+\.[0-9]+\.[0-9]+(\.[0-9]+)?")") ]]'
