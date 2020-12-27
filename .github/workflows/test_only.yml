@@ -18,6 +18,15 @@ jobs:
       uses: ruby/setup-ruby@v1
       with:
         ruby-version: ${{ matrix.ruby }}
+    - name: Cache ruby gems
+      uses: actions/cache@v2
+      env:
+        cache-name: cache-gems
+      with:
+        path: ./vendor/cache
+        key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ matrix.ruby }}-${{ hashFiles('./rspec_in_context.gemspec') }}
+        restore_keys: |
+          ${{ runner.os }}-build-${{ env.cache-name }}-${{ matrix.ruby }}
     - name: Install dependencies
       run: bundle install
     - name: Run linter

@@ -18,8 +18,17 @@ jobs:
       uses: ruby/setup-ruby@v1
       with:
         ruby-version: ${{ matrix.ruby }}
+    - name: Cache ruby gems
+      uses: actions/cache@v2
+      env:
+        cache-name: cache-gems
+      with:
+        path: ./vendor/cache
+        key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ matrix.ruby }}-${{ hashFiles('./rspec_in_context.gemspec') }}
+        restore_keys: |
+          ${{ runner.os }}-build-${{ env.cache-name }}-${{ matrix.ruby }}
     - name: Install dependencies
-      run: bundle install
+      run: "bundle install && bundle cache"
     - name: Run linter
       run: bundle exec rubocop
     - name: Run tests
@@ -34,6 +43,15 @@ jobs:
       uses: ruby/setup-ruby@v1
       with:
         ruby-version: 3.0
+    - name: Cache ruby gems
+      uses: actions/cache@v2
+      env:
+        cache-name: cache-gems
+      with:
+        path: ./vendor/cache
+        key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ matrix.ruby }}-${{ hashFiles('./rspec_in_context.gemspec') }}
+        restore_keys: |
+          ${{ runner.os }}-build-${{ env.cache-name }}-${{ matrix.ruby }}
     - name: Install dependencies
       run: bundle install
     - name: Prepare credentials
