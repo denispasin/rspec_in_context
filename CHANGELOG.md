@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.1.0] - 2020-12-27
+### Added
+- **BREAKING** Option to silence in_context block. They used to always wrap themself into a context block with their name. This is not the case anymore. All in_context are silent unless explicitely declared as not. 
+
 ## [1.0.1.2] - 2020-12-26
 ### Added
 - Changelog
