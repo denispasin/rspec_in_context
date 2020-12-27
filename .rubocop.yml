@@ -10,7 +10,7 @@ AllCops:
   DisplayCopNames: true
   Exclude:
     - 'bin/*'
-    - 'vendor'
+    - 'vendor/**/*.rb'
 
 Metrics/BlockLength:
   Exclude:
