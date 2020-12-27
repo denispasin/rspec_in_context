@@ -24,11 +24,11 @@ jobs:
         cache-name: cache-gems
       with:
         path: ./vendor/cache
-        key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ matrix.ruby }}-${{ hashFiles('./rspec_in_context.gemspec') }}
+        key: ${{ runner.os }}-build-${{ env.cache-name }}-ruby-${{ matrix.ruby }}-${{ hashFiles('./rspec_in_context.gemspec') }}
         restore-keys: |
-          ${{ runner.os }}-build-${{ env.cache-name }}-${{ matrix.ruby }}
+          ${{ runner.os }}-build-${{ env.cache-name }}-ruby-${{ matrix.ruby }}
     - name: Install dependencies
-      run: "bundle install && bundle cache"
+      run: "bundle install && bundle update && bundle cache"
     - name: Run linter
       run: bundle exec rubocop
     - name: Run tests
@@ -49,11 +49,11 @@ jobs:
         cache-name: cache-gems
       with:
         path: ./vendor/cache
-        key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ matrix.ruby }}-${{ hashFiles('./rspec_in_context.gemspec') }}
+        key: ${{ runner.os }}-build-${{ env.cache-name }}-ruby-${{ matrix.ruby }}-${{ hashFiles('./rspec_in_context.gemspec') }}
         restore-keys: |
-          ${{ runner.os }}-build-${{ env.cache-name }}-${{ matrix.ruby }}
+          ${{ runner.os }}-build-${{ env.cache-name }}-ruby-${{ matrix.ruby }}
     - name: Install dependencies
-      run: bundle install
+      run: bundle install && bundle update && bundle cache
     - name: Prepare credentials
       env:
         RUBYGEM_KEY: ${{ secrets.RUBYGEM_KEY }}
