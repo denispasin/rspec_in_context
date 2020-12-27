@@ -22,6 +22,6 @@ This is a release in order to test all type of actions
 - Support ruby 3.0
 
 [Unreleased]: https://github.com/zaratan/rspec_in_context/compare/v1.1.0.1...HEAD
-[1.1.0]: https://github.com/zaratan/rspec_in_context/releases/tag/v1.1.0.1
+[1.1.0.1]: https://github.com/zaratan/rspec_in_context/releases/tag/v1.1.0.1
 [1.1.0]: https://github.com/zaratan/rspec_in_context/releases/tag/v1.1.0
 [1.0.1.2]: https://github.com/zaratan/rspec_in_context/releases/tag/v1.0.1.2
