@@ -7,5 +7,4 @@
 /spec/reports/
 /tmp/
 
-Gemfile.lock
 vendor/cache
