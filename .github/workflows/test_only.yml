@@ -19,11 +19,7 @@ jobs:
       with:
         ruby-version: ${{ matrix.ruby }}
         bundler-cache: true
-    - name: DEBUG
-      run: bundle config list 
-    - name: CLEAN
-      run: bundle config unset path 
     - name: Run linter
-      run: bundle exec rubocop -c ./.rubocop.yml
+      run: rubocop
     - name: Run tests
-      run: bundle exec rspec
+      run: rspec
