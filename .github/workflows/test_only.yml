@@ -23,12 +23,14 @@ jobs:
       env:
         cache-name: cache-gems
       with:
-        path: ./vendor/cache
-        key: ${{ runner.os }}-build-${{ env.cache-name }}-ruby-${{ matrix.ruby }}-${{ hashFiles('./rspec_in_context.gemspec') }}
+        path: vendor/bundle
+        key: ${{ runner.os }}-build-${{ env.cache-name }}-ruby-${{ matrix.ruby }}-${{ hashFiles('**/Gemfile.lock') }}
         restore-keys: |
           ${{ runner.os }}-build-${{ env.cache-name }}-ruby-${{ matrix.ruby }}
     - name: Install dependencies
-      run: bundle install && bundle update && bundle cache
+      run: |
+        bundle config path vendor/bundle
+        bundle install --jobs 4 --retry 3
     - name: Run linter
       run: bundle exec rubocop
     - name: Run tests
